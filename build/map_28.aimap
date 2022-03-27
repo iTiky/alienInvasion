@@ -1,0 +1,28 @@
+A east=B south=H
+B east=C south=I west=A
+C east=D west=B
+D east=E west=C
+E east=F south=J west=D
+F north=Ff east=G west=E
+Ff south=F
+G west=F
+H north=A east=I
+I north=B south=K west=H
+J north=E south=N
+K north=I east=L
+L east=M south=S west=K
+M east=N south=T west=L
+N north=J east=O south=U west=M
+O east=P west=N
+P east=Q south=V west=O
+Q east=R west=P
+R south=W west=Q
+S north=L east=T
+T north=M east=U south=X west=S
+U north=N west=T
+V north=P south=Y
+W north=R south=Zz
+X north=T
+Y north=V east=Z
+Z east=Zz west=Y
+Zz north=W west=Z

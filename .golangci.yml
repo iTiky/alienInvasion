@@ -1,0 +1,92 @@
+Makefilelinters-settings:
+  golint:
+    min-confidence: 0
+  gocyclo:
+    min-complexity: 25
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  misspell:
+    locale: UK
+    ignore-words:
+      - serialized # serialized is written with 'z' in the Nedap urls
+      - color # color is written like that in responses from Nedap APIs
+      - customized # customized is written like that in Nedap OpenAPI specs
+      - organization # organization is written like that in Nedap OpenAPI specs
+      - center # one of the libraries that we use have a word center
+  gosec:
+    config:
+      G101:
+        pattern: "(?i)passwd|pass|password|pwd|secret|token|apiKey|bearer|cred" # Default gosec pattern is used here, excluding `pw` match, because of false positives on variables with names like `nedaPWebhook` (https://github.com/securego/gosec/blob/2a4064d45d18fb7f192281f10dcff762629dca2c/rules/hardcoded_credentials.go#L120)
+        ignore_entropy: false
+        entropy_threshold: "80.0"
+        per_char_threshold: "3.0"
+        truncate: "16"
+  lll:
+    line-length: 100
+  goimports:
+    local-prefixes: github.com/golangci/golangci-lint
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - diagnostic
+    disabled-checks:
+      - wrapperFunc
+      - commentFormatting # https://github.com/go-critic/go-critic/issues/755
+  revive:
+    ignore-generated-header: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - govet
+    - gocyclo
+    - varcheck
+    - structcheck
+    - ineffassign
+    - unconvert
+    - goconst
+    - gosimple
+    - staticcheck
+    - gosec
+    - tparallel
+    - nakedret
+    - gofmt
+    - gocognit
+    - godot
+    - misspell
+    - noctx
+    - nolintlint
+    - goimports
+    - revive
+
+run:
+  deadline: 10m
+  skip-dirs:
+    - ".*\\testdata"
+    - ".*proto"
+  skip-files:
+    - ".*pb\\.go"
+    - ".*pb\\.gw\\.go"
+    - assets.go
+
+output:
+  # colored-line-number|line-number|json|tab|checkstyle, default is "colored-line-number"
+  # format: json
+
+  # print lines of code with issue, default is true
+  print-issued-lines: true
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+# golangci.com configuration
+# https://github.com/golangci/golangci/wiki/Configuration
+service:
+  golangci-lint-version: 1.43.x # use fixed version to not introduce new linters unexpectedly
+  prepare:
+    - echo "here I can run custom commands, but no preparation needed"

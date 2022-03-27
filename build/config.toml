@@ -1,0 +1,34 @@
+[app]
+  # Logging level [debug, info, warn, error, fatal]
+  logLevel = "info"
+
+  # Visualization screen width [int]
+  screenWidth = 1500
+  # Visualization screen height [int]
+  screenHeight = 1000
+
+  # Minimum time offset to disembark an alien [duration]
+  aliensDisembarkMinRate = "50ms"
+  #  Maximum time offset to disembark an alien [duration]
+  aliensDisembarkMaxRate = "100ms"
+
+  # Check if simulation should be stopped rate [duration]
+  simStopCheckRate = "1s"
+
+[city]
+  # Fight duration per Alien power (K * totalAliensPower = OverallFightDuration) [duration]
+  fightDurationCoef = "150ms"
+
+[alien]
+  # Minimum time offset to move from a City [duration]
+  stepMinDuration = "500ms"
+  # Maximum time offset to move from a City [duration]
+  stepMaxDuration = "1s"
+
+  # Maximum number of steps before Alien stops moving [uint]
+  maxSteps = 25
+
+  # Minimum fighting power [uint]
+  minPower = 0
+  #Maximum fighting power [uint]
+  maxPower = 10
